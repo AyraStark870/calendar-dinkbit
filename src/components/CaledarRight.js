@@ -95,26 +95,32 @@ export const CaledarRight = ({ fechaElegida, setFechaElegida }) => {
       </div>
       <div className="days-container">
         <div className="days">
-          {[...Array(indicePrimerDia)].map((x, index) => {
-            return (
-              <div className="prev-date" key={index}>
-                {ultimoDiaMesAnterior -
-                  ([...Array(indicePrimerDia)].length - index) +
-                  1}
-              </div>
-            );
-          })}
-          {[...Array(ultimoDiaMesEnCurso)].map((x, index) => {
-            return (
-              <div
-                className={index + 1 === diaElegido ? "select-day" : ""}
-                onClick={() => handleSetDiaElegido(index)}
-                key={index}
-              >
-                {index + 1}
-              </div>
-            );
-          })}
+          {/* {[...Array(indicePrimerDia)].map((x, index) => { */}
+          {Array(indicePrimerDia)
+            .fill(0)
+            .map((x, index) => {
+              return (
+                <div className="prev-date" key={index}>
+                  {ultimoDiaMesAnterior -
+                    ([...Array(indicePrimerDia)].length - index) +
+                    1}
+                </div>
+              );
+            })}
+          {/* {[...Array(ultimoDiaMesEnCurso)].map((x, index) => { */}
+          {Array(ultimoDiaMesEnCurso)
+            .fill(0)
+            .map((x, index) => {
+              return (
+                <div
+                  className={index + 1 === diaElegido ? "select-day" : ""}
+                  onClick={() => handleSetDiaElegido(index)}
+                  key={index}
+                >
+                  {index + 1}
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>
