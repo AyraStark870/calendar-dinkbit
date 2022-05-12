@@ -102,7 +102,7 @@ export const CaledarRight = ({ fechaElegida, setFechaElegida }) => {
               return (
                 <div className="prev-date" key={index}>
                   {ultimoDiaMesAnterior -
-                    ([...Array(indicePrimerDia)].length - index) +
+                    (Array(indicePrimerDia).length - index) +
                     1}
                 </div>
               );
