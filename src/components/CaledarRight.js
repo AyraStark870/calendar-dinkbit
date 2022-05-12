@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { meses } from "../helpers/monthAndDays";
-export const CaledarRight = ({
-  diaElegido,
-  setDiaElegido,
-  setMesElegido,
-  mesElegido,
-  anioElegido,
-  setAnioElegido,
-}) => {
+
+export const CaledarRight = ({ fechaElegida, setFechaElegida }) => {
+  const { diaElegido, mesElegido, anioElegido } = fechaElegida;
   const date = new Date();
   date.setMonth(mesElegido);
   date.setFullYear(anioElegido);
 
   const handleSetDiaElegido = (index) => {
-    setDiaElegido(index + 1);
+    setFechaElegida((fechaElegida) => ({
+      ...fechaElegida,
+      diaElegido: index + 1,
+    }));
   };
   useEffect(() => {
     localStorage.setItem("diaElegido", JSON.stringify(diaElegido));
@@ -41,20 +39,33 @@ export const CaledarRight = ({
 
   const handleMesProximo = () => {
     if (mesElegido === 11) {
-      setAnioElegido((anioElegido) => anioElegido + 1);
-      setMesElegido(0);
+      setFechaElegida((fechaElegida) => ({
+        ...fechaElegida,
+        anioElegido: anioElegido + 1,
+        mesElegido: 0,
+      }));
       return;
     }
-    setMesElegido((mesElegido) => mesElegido + 1);
+    setFechaElegida((fechaElegida) => ({
+      ...fechaElegida,
+      mesElegido: mesElegido + 1,
+    }));
   };
   const handleMesAnterior = () => {
     if (mesElegido === 0) {
-      setAnioElegido((anioElegido) => anioElegido - 1);
-      setMesElegido(11);
+      setFechaElegida((fechaElegida) => ({
+        ...fechaElegida,
+        anioElegido: anioElegido - 1,
+        mesElegido: 11,
+      }));
       return;
     }
-    setMesElegido((mesElegido) => mesElegido - 1);
+    setFechaElegida((fechaElegida) => ({
+      ...fechaElegida,
+      mesElegido: mesElegido - 1,
+    }));
   };
+
   return (
     <div className="calendar">
       <div>

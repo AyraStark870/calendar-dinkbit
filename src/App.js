@@ -3,30 +3,18 @@ import { CaledarRight } from "./components/CaledarRight";
 import { CalendarLeft } from "./components/CalendarLeft";
 
 function App() {
-  const [diaElegido, setDiaElegido] = useState(
-    JSON.parse(localStorage.getItem("diaElegido")) || 3
-  );
-  const [mesElegido, setMesElegido] = useState(
-    JSON.parse(localStorage.getItem("mesElegido")) || 5
-  );
-  const [anioElegido, setAnioElegido] = useState(
-    JSON.parse(localStorage.getItem("anioElegido")) || 2021
-  );
+  const [fechaElegida, setFechaElegida] = useState({
+    diaElegido: JSON.parse(localStorage.getItem("diaElegido")) || 3,
+    mesElegido: JSON.parse(localStorage.getItem("mesElegido")) || 5,
+    anioElegido: JSON.parse(localStorage.getItem("anioElegido")) || 2021,
+  });
 
   return (
     <div className="container">
-      <CalendarLeft
-        diaElegido={diaElegido}
-        mesElegido={mesElegido}
-        anioElegido={anioElegido}
-      />
+      <CalendarLeft fechaElegida={fechaElegida} />
       <CaledarRight
-        diaElegido={diaElegido}
-        setDiaElegido={setDiaElegido}
-        mesElegido={mesElegido}
-        setMesElegido={setMesElegido}
-        anioElegido={anioElegido}
-        setAnioElegido={setAnioElegido}
+        fechaElegida={fechaElegida}
+        setFechaElegida={setFechaElegida}
       />
     </div>
   );

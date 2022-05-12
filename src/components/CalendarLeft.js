@@ -1,7 +1,8 @@
 import React from "react";
 import { meses, dias } from "../helpers/monthAndDays";
 
-export const CalendarLeft = ({ diaElegido, mesElegido, anioElegido }) => {
+export const CalendarLeft = ({ fechaElegida }) => {
+  const { diaElegido, mesElegido, anioElegido } = fechaElegida;
   const fecha = new Date();
 
   fecha.setDate(diaElegido);
